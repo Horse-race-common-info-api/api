@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   scope :api do
+    resources :races, only: [:index]
     resources :horses, only: [:show]
   end
 end
