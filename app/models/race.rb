@@ -2,5 +2,5 @@ class Race < ApplicationRecord
   belongs_to :held
   belongs_to :course
 
-  scope :q, -> name { where("match (name) against ('#{name}')") }
+  scope :q, -> name { where("match (name) against ('#{name}' IN BOOLEAN MODE)") }
 end
