@@ -10,12 +10,22 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  username: <%= ENV.fetch("MYSQL_USER") %>
-  password:  <%= ENV.fetch("MYSQL_PASSWORD") %>
-  host: <%= ENV.fetch("MYSQL_HOST") %>
-  port: <%= ENV.fetch("MYSQL_PORT") %>
-  database: <%= ENV.fetch("MYSQL_DATABASE") %>
+  primary:
+    <<: *default
+    username: <%= ENV.fetch("MYSQL_USER") %>
+    password:  <%= ENV.fetch("MYSQL_PASSWORD") %>
+    host: <%= ENV.fetch("MYSQL_HOST") %>
+    port: <%= ENV.fetch("MYSQL_PORT") %>
+    database: <%= ENV.fetch("MYSQL_DATABASE") %>
+    migrations_paths: db/primary_migrate
+  api_db:
+    <<: *default
+    username: <%= ENV.fetch("API_DB_MYSQL_USER") %>
+    password:  <%= ENV.fetch("API_DB_MYSQL_PASSWORD") %>
+    host: <%= ENV.fetch("API_DB_MYSQL_HOST") %>
+    port: <%= ENV.fetch("API_DB_MYSQL_PORT") %>
+    database: <%= ENV.fetch("API_DB_MYSQL_DATABASE") %>
+    migrations_paths: db/api_db_migrate
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
